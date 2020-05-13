@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MusicApp.Views.PlayListDetailsPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <ActivityIndicator x:Name="defaultActivityIndicator"
+                           VerticalOptions="CenterAndExpand"
+                           IsRunning="{Binding IsLoading}"
+                           HorizontalOptions="Fill" />
+            
+            <Label Text="Title:" FontSize="Medium" FontFamily="Bold" />
+            <Label Text="{Binding PlayList.Title}" d:Text="Playlist title" FontSize="Medium"/>
+            <Label Text="Description:" FontSize="Medium" />
+            <Label Text="{Binding PlayList.Description}" d:Text="Playlist description" FontSize="Medium"/>
+            <Label Text="Songs count:" FontSize="Medium" />
+            <Label Text="{Binding PlayList.ItemsCount}" d:Text="Songs count" FontSize="Medium"/>
+
+            <ListView x:Name="SongsListView"
+                ItemsSource="{Binding Songs}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Title}" 
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                                <Label Text="{Binding Description}" 
+                                d:Text="Item description"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

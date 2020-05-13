@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MusicApp.Views.SongDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="{Binding Status, Mode=TwoWay}" IsVisible="{Binding HasStatus, Mode=TwoWay}" FontSize="Medium" TextColor="{Binding StatusColor, Mode=TwoWay}" />
+        
+        <Label Text="Title:" FontSize="Medium" />
+        <Label Text="{Binding Item.Title}" d:Text="Song title" FontSize="Medium"/>
+        <Label Text="Description:" FontSize="Medium" />
+        <Label Text="{Binding Item.Description}" d:Text="Song description" FontSize="Medium"/>
+        <Label Text="Published:" FontSize="Medium" />
+        <Label Text="{Binding Item.PublishedAt}" d:Text="Published date" FontSize="Medium"/>
+        <Label Text="Add to playlist:" FontSize="Medium" />
+        <Picker x:Name="picker" 
+            FontSize="Medium"
+            ItemsSource="{Binding PlayLists}"
+            ItemDisplayBinding="{Binding Title}"
+            SelectedItem="{Binding SelectedPlayList}" />
+
+        <Button Text="Save" WidthRequest="100" Clicked="Save_Clicked"
+            HorizontalOptions="Start" />
+        <Button Text="Cancel" WidthRequest="100" Clicked="Cancel_Clicked"
+            HorizontalOptions="Start" />
+    </StackLayout>
+    
+</ContentPage>
